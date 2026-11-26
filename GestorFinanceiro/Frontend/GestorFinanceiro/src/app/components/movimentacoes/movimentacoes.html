@@ -1,0 +1,59 @@
+
+<div class="container">
+
+  <header class="header">
+    <div>
+      <h1>Gestor Financeiro</h1>
+      <p>Organize suas receitas e despesas</p>
+    </div>
+
+    <span class="badge">Controle pessoal</span>
+  </header>
+
+  <section class="lista">
+
+    <h2>Movimentações</h2>
+    <p>Quantidade de movimentações: {{ movimentacoes.length }}</p>
+    <div class="tabela-container">
+
+      <table>
+        <thead>
+          <tr>
+            <th>Descrição</th>
+            <th>Categoria</th>
+            <th>Data</th>
+            <th>Tipo</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          @for (movimentacao of movimentacoes; track movimentacao._id) {
+            <tr>
+              <td>{{ movimentacao.descricao }}</td>
+              <td>{{ movimentacao.categoria }}</td>
+              <td>{{ movimentacao.data | date:'dd/MM/yyyy' }}</td>
+              <td>{{ movimentacao.tipo }}</td>
+              <td>
+                {{ movimentacao.valor | currency:'BRL' }}
+              </td>
+            </tr>
+          }
+
+          @if (movimentacoes.length === 0) {
+            <tr>
+              <td colspan="5">
+                Nenhuma movimentação cadastrada.
+              </td>
+            </tr>
+          }
+
+        </tbody>
+      </table>
+
+    </div>
+
+  </section>
+
+</div>
